@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phone Store - Variedad de Ofertas Móviles</title>
+<link rel="icon" type="image/x-icon" href="logo.jpg">
+<style>
+:root {
+    --primary: #2c3e50;
+    --secondary: #3498db;
+    --accent: #2ecc71;
+    --danger: #e74c3c;
+    --light: #ecf0f1;
+    --dark: #2c3e50;
+    --gray: #95a5a6;
+    --shadow: 0 4px 12px rgba(0,0,0,0.1);
+    --radius: 12px;
+    --transition: all 0.3s ease;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: var(--dark);
+    line-height: 1.6;
+}
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius);
+    padding: 20px 30px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    object-fit: cover;
+    box-shadow: var(--shadow);
+}
+.title h1 {
+    font-size: 2.2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+.title p {
+    color: var(--gray);
+    font-size: 1rem;
+    margin-top: 5px;
+}
+.cart-toggle {
+    background: var(--secondary);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+}
+.cart-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+}
+.cart-count {
+    background: var(--danger);
+    color: white;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+    align-content: start;
+}
+.product-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
+.product-image-container {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    overflow: hidden;
+    cursor: pointer;
+}
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 15px;
+    transition: transform 0.5s ease;
+    transform: scale(1.1);
+}
+.product-image:hover {
+    transform: scale(1.15);
+}
+.fullscreen-toggle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: var(--transition);
+    backdrop-filter: blur(5px);
+}
+.product-image-container:hover .fullscreen-toggle {
+    opacity: 1;
+}
+.product-content {
+    padding: 20px;
+}
+.product-id {
+    display: inline-block;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.product-title {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--dark);
+    font-weight: 700;
+}
+.product-description {
+    color: var(--gray);
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+.product-price {
+    color: var(--accent);
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.currency {
+    font-size: 1.2rem;
+    color: var(--gray);
+}
+.product-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.quantity-input {
+    width: 80px;
+    padding: 10px;
+    border: 2px solid var(--secondary);
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    background: white;
+}
+.add-to-cart {
+    flex: 1;
+    background: var(--secondary);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+.add-to-cart:hover {
+    background: #2980b9;
+    transform: scale(1.02);
+}
+
+/* Modal del Carrito */
+.cart-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.cart-modal.active {
+    display: flex;
+}
+.cart-modal-content {
+    background: white;
+    border-radius: var(--radius);
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+.cart-modal-header {
+    padding: 20px;
+    background: var(--primary);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cart-modal-header h2 {
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.cart-modal-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px;
+    transition: var(--transition);
+}
+.cart-modal-close:hover {
+    transform: rotate(90deg);
+}
+.cart-modal-body {
+    padding: 20px;
+    flex: 1;
+    overflow-y: auto;
+}
+.cart-items {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.cart-item:last-child {
+    border-bottom: none;
+}
+.cart-item-info {
+    flex: 1;
+}
+.cart-item-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+.cart-item-details {
+    font-size: 0.9rem;
+    color: var(--gray);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.cart-item-remove {
+    background: var(--danger);
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+.cart-item-remove:hover {
+    transform: rotate(90deg);
+}
+.cart-total {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--accent);
+    text-align: right;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+}
+.cart-modal-footer {
+    padding: 20px;
+    background: rgba(0,0,0,0.03);
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+.whatsapp-button {
+    width: 100%;
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+}
+.whatsapp-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+/* Modal de Imagen Fullscreen */
+.image-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    z-index: 1100;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.image-modal.active {
+    display: flex;
+}
+.image-modal-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.image-modal-content img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+.image-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    backdrop-filter: blur(10px);
+}
+.image-modal-close:hover {
+    background: rgba(255,255,255,0.2);
+    transform: rotate(90deg);
+}
+.security-alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--danger);
+    color: white;
+    padding: 15px 25px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    z-index: 1200;
+    display: none;
+    animation: slideIn 0.3s ease;
+}
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+.empty-cart {
+    text-align: center;
+    color: var(--gray);
+    padding: 40px 20px;
+}
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: var(--gray);
+}
+</style>
+</head>
+<body>
+<div class="security-alert" id="securityAlert"></div>
+<div class="image-modal" id="imageModal">
+    <div class="image-modal-content">
+        <img id="fullscreenImage" src="logo.jpg" alt="Imagen en pantalla completa">
+        <button class="image-modal-close" onclick="closeFullscreen()">✕</button>
+    </div>
+</div>
+<div class="cart-modal" id="cartModal">
+    <div class="cart-modal-content">
+        <div class="cart-modal-header">
+            <h2>🛒 Tu Carrito</h2>
+            <button class="cart-modal-close" onclick="toggleCart()">✕</button>
+        </div>
+        <div class="cart-modal-body">
+            <div class="cart-items" id="cartItems">
+                <div class="empty-cart">Tu carrito está vacío</div>
+            </div>
+            <div class="cart-total" id="cartTotal"><span class="currency">USD</span> $0.00</div>
+        </div>
+        <div class="cart-modal-footer">
+            <button class="whatsapp-button" onclick="processOrder()">
+                <span>💬 Comprar por WhatsApp</span>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <header class="header">
+        <div class="logo-section">
+            <img src="logo.jpg" alt="Phone Store Logo" class="logo">
+            <div class="title">
+                <h1>Phone Store</h1>
+                <p>Variedad de ofertas móviles, no dudes en comprarnos primero</p>
+            </div>
+        </div>
+        <button class="cart-toggle" onclick="toggleCart()">
+            🛒 Carrito
+            <span class="cart-count" id="cartCount">0</span>
+        </button>
+    </header>
+    <main class="main-content">
+        <section class="products-grid" id="productsGrid">
+            <div class="loading">Cargando productos...</div>
+        </section>
+    </main>
+</div>
+
+<script>
+class StoreManager {
+    constructor() {
+        this.products = [];
+        this.cart = this.loadCart();
+        this.init();
+    }
+
+    async init() {
+        this.setupSecurity();
+        await this.loadProducts();
+        this.renderProducts();
+        this.updateCartUI();
+        this.bindEvents();
+    }
+
+    loadCart() {
+        try {
+            const saved = localStorage.getItem('phoneStoreCart');
+            return saved ? JSON.parse(saved) : [];
+        } catch {
+            return [];
+        }
+    }
+
+    saveCart() {
+        localStorage.setItem('phoneStoreCart', JSON.stringify(this.cart));
+    }
+
+    async loadProducts() {
+        this.products = [
+            { id: 1, title: "Samsung A26", description: "Producto sellado en su caja, Accesorios incluidos en la compra Cover y cargador", price: 245, image: "1.jpg" },
+            { id: 2, title: "Samsung A17", description: "Producto sellado en su caja, Accesorios incluidos en la compra Cover y cargador", price: 200, image: "2.jpg" },
+            { id: 3, title: "Samsung A18", description: "Producto sellado en su caja, Accesorios incluidos en la compra Cover y cargador", price: 165, image: "3.jpg" },
+            { id: 4, title: "Itel City 100", description: "Producto sellado en su caja, Accesorios incluidos en la compra Cover y cargador", price: 125, image: "4.jpg" },
+            { id: 5, title: "Redmi Note 14", description: "Producto sellado en su caja, Accesorios incluidos en la compra Cover y cargador", price: 200, image: "5.jpg" },
+            { id: 6, title: "Samsung A26", description: "Producto sellado en su caja, Accesorios incluidos en la compra Cover y cargador", price: 230, image: "6.jpg" },
+            { id: 7, title: "Itel A50C", description: "Producto sellado en su caja, Accesorios incluidos en la compra Cover y cargador", price: 105, image: "7.jpg" },
+        ];
+    }
+
+    renderProducts() {
+        const grid = document.getElementById('productsGrid');
+        grid.innerHTML = this.products.map(product => `
+            <div class="product-card" data-id="${product.id}">
+                <div class="product-image-container">
+                    <img src="${product.image}" alt="${product.title}" class="product-image" draggable="false">
+                    <button class="fullscreen-toggle" onclick="store.openFullscreen('${product.image}')">
+                        🔍
+                    </button>
+                </div>
+                <div class="product-content">
+                    <span class="product-id">ID: ${String(product.id).padStart(3, '0')}</span>
+                    <h3 class="product-title">${product.title || 'Título del Producto'}</h3>
+                    <p class="product-description">${product.description || 'Descripción del producto. Modificar según necesidades.'}</p>
+                    <div class="product-price">
+                        <span class="currency">USD</span> $${product.price || '0'}
+                    </div>
+                    <div class="product-controls">
+                        <input type="number" class="quantity-input" min="1" max="99" value="1">
+                        <button class="add-to-cart" onclick="store.addToCart(${product.id})">Añadir al Carrito</button>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    addToCart(productId) {
+        const product = this.products.find(p => p.id === productId);
+        if (!product) return;
+
+        const quantityInput = document.querySelector(`.product-card[data-id="${productId}"] .quantity-input`);
+        const quantity = Math.min(99, Math.max(1, parseInt(quantityInput.value) || 1));
+
+        const existingItem = this.cart.find(item => item.id === productId);
+        if (existingItem) {
+            existingItem.quantity = Math.min(99, existingItem.quantity + quantity);
+        } else {
+            this.cart.push({
+                id: product.id,
+                title: product.title || `Producto ${productId}`,
+                price: product.price || 0,
+                quantity: quantity,
+                image: product.image
+            });
+        }
+
+        quantityInput.value = 1;
+        this.saveCart();
+        this.updateCartUI();
+        this.showNotification('Producto añadido al carrito');
+    }
+
+    removeFromCart(index) {
+        this.cart.splice(index, 1);
+        this.saveCart();
+        this.updateCartUI();
+    }
+
+    updateCartUI() {
+        const cartCount = document.getElementById('cartCount');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+
+        cartCount.textContent = this.cart.reduce((sum, item) => sum + item.quantity, 0);
+
+        if (this.cart.length === 0) {
+            cartItems.innerHTML = '<div class="empty-cart">Tu carrito está vacío</div>';
+            cartTotal.innerHTML = '<span class="currency">USD</span> $0.00';
+            return;
+        }
+
+        cartItems.innerHTML = this.cart.map((item, index) => `
+            <div class="cart-item">
+                <div class="cart-item-info">
+                    <div class="cart-item-title">${item.title}</div>
+                    <div class="cart-item-details">
+                        ${item.quantity} × <span class="currency">USD</span> $${item.price.toFixed(2)}
+                    </div>
+                </div>
+                <button class="cart-item-remove" onclick="store.removeFromCart(${index})">✕</button>
+            </div>
+        `).join('');
+
+        const total = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        cartTotal.innerHTML = `<span class="currency">USD</span> $${total.toFixed(2)}`;
+    }
+
+    setupSecurity() {
+        const handlers = {
+            contextmenu: (e) => this.preventAction(e, 'Menú contextual bloqueado'),
+            dragstart: (e) => e.target.tagName === 'IMG' && this.preventAction(e, 'Descarga bloqueada'),
+            selectstart: (e) => e.preventDefault(),
+            keydown: (e) => {
+                if (e.ctrlKey && ['u', 's', 'p', 'i'].includes(e.key.toLowerCase())) {
+                    this.preventAction(e, 'Acceso bloqueado');
+                }
+            }
+        };
+
+        Object.entries(handlers).forEach(([event, handler]) => {
+            document.addEventListener(event, handler);
+        });
+    }
+
+    preventAction(e, message) {
+        e.preventDefault();
+        this.showNotification(message);
+    }
+
+    showNotification(message) {
+        const alert = document.getElementById('securityAlert');
+        alert.textContent = message;
+        alert.style.display = 'block';
+        
+        setTimeout(() => {
+            alert.style.display = 'none';
+        }, 2000);
+    }
+
+    bindEvents() {
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.cart-modal-content') && !e.target.closest('.cart-toggle')) {
+                document.getElementById('cartModal').classList.remove('active');
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.getElementById('cartModal').classList.remove('active');
+                document.getElementById('imageModal').classList.remove('active');
+            }
+        });
+    }
+
+    openFullscreen(imageUrl) {
+        const modal = document.getElementById('imageModal');
+        const img = document.getElementById('fullscreenImage');
+        img.src = imageUrl;
+        modal.classList.add('active');
+    }
+
+    closeFullscreen() {
+        document.getElementById('imageModal').classList.remove('active');
+    }
+
+    processOrder() {
+        if (this.cart.length === 0) {
+            this.showNotification('El carrito está vacío');
+            return;
+        }
+
+        const phoneNumber = '+5355795822';
+        const orderData = this.formatOrderData();
+        const message = this.generateWhatsAppMessage(orderData);
+        
+        this.sendWhatsApp(phoneNumber, message);
+        this.clearCart();
+    }
+
+    formatOrderData() {
+        const total = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const items = this.cart.map(item => ({
+            id: item.id,
+            title: item.title,
+            price: item.price,
+            quantity: item.quantity,
+            subtotal: item.price * item.quantity
+        }));
+
+        return {
+            date: new Date().toLocaleDateString('es-ES'),
+            time: new Date().toLocaleTimeString('es-ES'),
+            items: items,
+            total: total,
+            itemCount: items.reduce((sum, item) => sum + item.quantity, 0)
+        };
+    }
+
+    generateWhatsAppMessage(orderData) {
+        let message = `*📱 PEDIDO PHONE STORE*\n`;
+        message += `📅 Fecha: ${orderData.date}\n`;
+        message += `⏰ Hora: ${orderData.time}\n`;
+        message += `📦 Productos: ${orderData.itemCount}\n`;
+        message += `\n━━━━━━━━━━━━━━━━━━━━\n\n`;
+
+        orderData.items.forEach((item, index) => {
+            message += `*${index + 1}. ${item.title}*\n`;
+            message += `   🆔 ID: ${String(item.id).padStart(3, '0')}\n`;
+            message += `   📊 Cantidad: ${item.quantity}\n`;
+            message += `   💲 Precio: USD $${item.price.toFixed(2)}\n`;
+            message += `   🧮 Subtotal: USD $${item.subtotal.toFixed(2)}\n\n`;
+        });
+
+        message += `━━━━━━━━━━━━━━━━━━━━\n\n`;
+        message += `💰 *TOTAL A PAGAR: USD $${orderData.total.toFixed(2)}*\n\n`;
+        message += `Gracias por su compra! 🎉`;
+
+        return encodeURIComponent(message);
+    }
+
+    sendWhatsApp(phoneNumber, message) {
+        const url = `https://wa.me/${phoneNumber}?text=${message}`;
+        window.open(url, '_blank');
+    }
+
+    clearCart() {
+        this.cart = [];
+        this.saveCart();
+        this.updateCartUI();
+        this.showNotification('Pedido enviado correctamente');
+        document.getElementById('cartModal').classList.remove('active');
+    }
+}
+
+function toggleCart() {
+    const modal = document.getElementById('cartModal');
+    modal.classList.toggle('active');
+}
+
+function closeFullscreen() {
+    store.closeFullscreen();
+}
+
+function processOrder() {
+    store.processOrder();
+}
+
+window.store = new StoreManager();
+</script>
+</body>
+</html>
