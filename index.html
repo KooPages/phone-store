@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Phone Store - Variedad de Ofertas Móviles</title>
+<title>Phone-Store</title>
 <link rel="icon" type="image/x-icon" href="logo.jpg">
 <style>
 :root {
@@ -35,6 +35,35 @@ body {
     max-width: 1400px;
     margin: 0 auto;
     padding: 20px;
+}
+/* Banner de mensajería */
+.delivery-banner {
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: white;
+    padding: 15px 25px;
+    border-radius: var(--radius);
+    margin-bottom: 25px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    animation: pulse 2s infinite;
+    border: 2px solid rgba(255,255,255,0.3);
+}
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+.delivery-banner h3 {
+    font-size: 1.4rem;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.delivery-banner p {
+    font-size: 0.95rem;
+    opacity: 0.9;
 }
 .header {
     background: rgba(255, 255, 255, 0.95);
@@ -339,6 +368,51 @@ body {
 .cart-item-remove:hover {
     transform: rotate(90deg);
 }
+/* Formulario de datos del cliente */
+.customer-form {
+    margin: 20px 0;
+    padding: 20px;
+    background: rgba(52, 152, 219, 0.05);
+    border-radius: var(--radius);
+    border: 1px solid rgba(52, 152, 219, 0.2);
+}
+.customer-form h3 {
+    margin-bottom: 15px;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: var(--dark);
+    font-size: 0.9rem;
+}
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+.form-group textarea {
+    min-height: 80px;
+    resize: vertical;
+}
 .cart-total {
     font-size: 1.8rem;
     font-weight: 800;
@@ -376,6 +450,12 @@ body {
 .whatsapp-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+.whatsapp-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
 }
 
 /* Modal de Imagen Fullscreen */
@@ -432,6 +512,65 @@ body {
     background: rgba(255,255,255,0.2);
     transform: rotate(90deg);
 }
+/* Notificaciones de guía */
+.guide-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 15px 25px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    z-index: 1200;
+    max-width: 350px;
+    animation: slideUp 0.5s ease;
+    border-left: 5px solid var(--accent);
+}
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+.guide-notification h4 {
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.guide-notification p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+.guide-notification button {
+    background: rgba(255,255,255,0.2);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    margin-top: 10px;
+    transition: var(--transition);
+}
+.guide-notification button:hover {
+    background: rgba(255,255,255,0.3);
+}
 .security-alert {
     position: fixed;
     top: 20px;
@@ -445,16 +584,6 @@ body {
     display: none;
     animation: slideIn 0.3s ease;
 }
-@keyframes slideIn {
-    from {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
 .empty-cart {
     text-align: center;
     color: var(--gray);
@@ -465,9 +594,60 @@ body {
     padding: 40px;
     color: var(--gray);
 }
+.step-indicator {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    position: relative;
+}
+.step-indicator::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #ddd;
+    z-index: 1;
+}
+.step {
+    background: white;
+    border: 2px solid #ddd;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    z-index: 2;
+    transition: var(--transition);
+}
+.step.active {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: white;
+    transform: scale(1.1);
+}
+.step.completed {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: white;
+}
 </style>
 </head>
 <body>
+<div class="delivery-banner">
+    <h3>🚚 ¡Envío Gratis a Domicilio!</h3>
+    <p>Todos nuestros productos incluyen mensajería directa a la puerta de su casa, sin costos adicionales</p>
+</div>
+
+<div class="guide-notification" id="guideNotification" style="display: none;">
+    <h4>📱 <span id="guideTitle">Guía de Compra</span></h4>
+    <p id="guideMessage"></p>
+    <button onclick="store.closeGuide()">Entendido</button>
+</div>
+
 <div class="security-alert" id="securityAlert"></div>
 <div class="image-modal" id="imageModal">
     <div class="image-modal-content">
@@ -482,14 +662,36 @@ body {
             <button class="cart-modal-close" onclick="toggleCart()">✕</button>
         </div>
         <div class="cart-modal-body">
+            <div class="step-indicator">
+                <div class="step active" id="step1">1</div>
+                <div class="step" id="step2">2</div>
+                <div class="step" id="step3">3</div>
+            </div>
             <div class="cart-items" id="cartItems">
                 <div class="empty-cart">Tu carrito está vacío</div>
             </div>
+            
+            <div class="customer-form" id="customerForm" style="display: none;">
+                <h3>📝 Información de Envío</h3>
+                <div class="form-group">
+                    <label for="customerName">Nombre Completo *</label>
+                    <input type="text" id="customerName" placeholder="Ej: Juan Pérez">
+                </div>
+                <div class="form-group">
+                    <label for="customerPhone">Número de Teléfono *</label>
+                    <input type="tel" id="customerPhone" placeholder="Ej: 555-1234-567">
+                </div>
+                <div class="form-group">
+                    <label for="customerAddress">Dirección Completa *</label>
+                    <textarea id="customerAddress" placeholder="Incluye ciudad, calle, número, referencia..."></textarea>
+                </div>
+            </div>
+            
             <div class="cart-total" id="cartTotal"><span class="currency">USD</span> $0.00</div>
         </div>
         <div class="cart-modal-footer">
-            <button class="whatsapp-button" onclick="processOrder()">
-                <span>💬 Comprar por WhatsApp</span>
+            <button class="whatsapp-button" id="whatsappButton" onclick="store.processOrder()" disabled>
+                <span>💬 Completar Datos para Proceder</span>
             </button>
         </div>
     </div>
@@ -520,6 +722,25 @@ class StoreManager {
     constructor() {
         this.products = [];
         this.cart = this.loadCart();
+        this.customerData = this.loadCustomerData();
+        this.currentGuideStep = 0;
+        this.guideSteps = [
+            {
+                title: "¡Bienvenido a Phone Store!",
+                message: "Paso 1: Selecciona los productos que deseas y añádelos al carrito usando el botón 'Añadir al Carrito'.",
+                condition: () => this.cart.length === 0
+            },
+            {
+                title: "Carrito Listo",
+                message: "Paso 2: Haz clic en el botón 'Carrito' para revisar tus productos. Completa tus datos para proceder.",
+                condition: () => this.cart.length > 0 && !this.isFormComplete()
+            },
+            {
+                title: "Datos Completos",
+                message: "Paso 3: ¡Excelente! Ya puedes proceder con tu compra haciendo clic en 'Comprar por WhatsApp'.",
+                condition: () => this.isFormComplete()
+            }
+        ];
         this.init();
     }
 
@@ -529,6 +750,7 @@ class StoreManager {
         this.renderProducts();
         this.updateCartUI();
         this.bindEvents();
+        this.startGuide();
     }
 
     loadCart() {
@@ -540,8 +762,21 @@ class StoreManager {
         }
     }
 
+    loadCustomerData() {
+        try {
+            const saved = localStorage.getItem('phoneStoreCustomerData');
+            return saved ? JSON.parse(saved) : { name: '', phone: '', address: '' };
+        } catch {
+            return { name: '', phone: '', address: '' };
+        }
+    }
+
     saveCart() {
         localStorage.setItem('phoneStoreCart', JSON.stringify(this.cart));
+    }
+
+    saveCustomerData() {
+        localStorage.setItem('phoneStoreCustomerData', JSON.stringify(this.customerData));
     }
 
     async loadProducts() {
@@ -605,25 +840,40 @@ class StoreManager {
         quantityInput.value = 1;
         this.saveCart();
         this.updateCartUI();
-        this.showNotification('Producto añadido al carrito');
+        this.showNotification('✅ Producto añadido al carrito');
+        this.showGuideStep();
     }
 
     removeFromCart(index) {
         this.cart.splice(index, 1);
         this.saveCart();
         this.updateCartUI();
+        this.showGuideStep();
     }
 
     updateCartUI() {
         const cartCount = document.getElementById('cartCount');
         const cartItems = document.getElementById('cartItems');
         const cartTotal = document.getElementById('cartTotal');
+        const customerForm = document.getElementById('customerForm');
+        const whatsappButton = document.getElementById('whatsappButton');
+        const step1 = document.getElementById('step1');
+        const step2 = document.getElementById('step2');
+        const step3 = document.getElementById('step3');
 
         cartCount.textContent = this.cart.reduce((sum, item) => sum + item.quantity, 0);
 
         if (this.cart.length === 0) {
             cartItems.innerHTML = '<div class="empty-cart">Tu carrito está vacío</div>';
             cartTotal.innerHTML = '<span class="currency">USD</span> $0.00';
+            customerForm.style.display = 'none';
+            whatsappButton.disabled = true;
+            whatsappButton.innerHTML = '<span>💬 Completa los datos para proceder</span>';
+            
+            step1.classList.add('active');
+            step1.classList.remove('completed');
+            step2.classList.remove('active', 'completed');
+            step3.classList.remove('active', 'completed');
             return;
         }
 
@@ -639,8 +889,70 @@ class StoreManager {
             </div>
         `).join('');
 
+        customerForm.style.display = 'block';
+        
+        step1.classList.remove('active');
+        step1.classList.add('completed');
+        step2.classList.add('active');
+        step2.classList.remove('completed');
+        step3.classList.remove('active', 'completed');
+
         const total = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
         cartTotal.innerHTML = `<span class="currency">USD</span> $${total.toFixed(2)}`;
+
+        this.updateCustomerForm();
+        this.validateForm();
+    }
+
+    updateCustomerForm() {
+        document.getElementById('customerName').value = this.customerData.name;
+        document.getElementById('customerPhone').value = this.customerData.phone;
+        document.getElementById('customerAddress').value = this.customerData.address;
+        
+        const inputs = document.querySelectorAll('#customerForm input, #customerForm textarea');
+        inputs.forEach(input => {
+            input.addEventListener('input', () => {
+                this.customerData[input.id.replace('customer', '').toLowerCase()] = input.value;
+                this.saveCustomerData();
+                this.validateForm();
+                this.showGuideStep();
+            });
+        });
+    }
+
+    validateForm() {
+        const name = document.getElementById('customerName').value.trim();
+        const phone = document.getElementById('customerPhone').value.trim();
+        const address = document.getElementById('customerAddress').value.trim();
+        const whatsappButton = document.getElementById('whatsappButton');
+        const step2 = document.getElementById('step2');
+        const step3 = document.getElementById('step3');
+
+        const isValid = name.length > 3 && phone.length >= 8 && address.length > 10;
+        
+        if (isValid) {
+            whatsappButton.disabled = false;
+            whatsappButton.innerHTML = '<span>💬 Comprar por WhatsApp</span>';
+            
+            step2.classList.remove('active');
+            step2.classList.add('completed');
+            step3.classList.add('active');
+        } else {
+            whatsappButton.disabled = true;
+            whatsappButton.innerHTML = '<span>💬 Completa los datos para proceder</span>';
+            
+            step2.classList.add('active');
+            step2.classList.remove('completed');
+            step3.classList.remove('active', 'completed');
+        }
+        
+        return isValid;
+    }
+
+    isFormComplete() {
+        return this.customerData.name.length > 3 && 
+               this.customerData.phone.length >= 8 && 
+               this.customerData.address.length > 10;
     }
 
     setupSecurity() {
@@ -675,6 +987,37 @@ class StoreManager {
         }, 2000);
     }
 
+    startGuide() {
+        setTimeout(() => {
+            this.showGuideStep();
+        }, 1500);
+    }
+
+    showGuideStep() {
+        const currentStep = this.guideSteps.find(step => step.condition());
+        if (currentStep && this.currentGuideStep !== this.guideSteps.indexOf(currentStep)) {
+            this.currentGuideStep = this.guideSteps.indexOf(currentStep);
+            this.showGuide(currentStep.title, currentStep.message);
+        }
+    }
+
+    showGuide(title, message) {
+        const guide = document.getElementById('guideNotification');
+        document.getElementById('guideTitle').textContent = title;
+        document.getElementById('guideMessage').textContent = message;
+        guide.style.display = 'block';
+        
+        setTimeout(() => {
+            if (guide.style.display === 'block') {
+                guide.style.display = 'none';
+            }
+        }, 8000);
+    }
+
+    closeGuide() {
+        document.getElementById('guideNotification').style.display = 'none';
+    }
+
     bindEvents() {
         document.addEventListener('click', (e) => {
             if (!e.target.closest('.cart-modal-content') && !e.target.closest('.cart-toggle')) {
@@ -707,6 +1050,11 @@ class StoreManager {
             return;
         }
 
+        if (!this.validateForm()) {
+            this.showNotification('Por favor, completa todos los datos requeridos');
+            return;
+        }
+
         const phoneNumber = '+5355795822';
         const orderData = this.formatOrderData();
         const message = this.generateWhatsAppMessage(orderData);
@@ -728,6 +1076,7 @@ class StoreManager {
         return {
             date: new Date().toLocaleDateString('es-ES'),
             time: new Date().toLocaleTimeString('es-ES'),
+            customer: this.customerData,
             items: items,
             total: total,
             itemCount: items.reduce((sum, item) => sum + item.quantity, 0)
@@ -735,11 +1084,17 @@ class StoreManager {
     }
 
     generateWhatsAppMessage(orderData) {
-        let message = `*📱 PEDIDO PHONE STORE*\n`;
+        let message = `*📱 PEDIDO PHONE STORE - ENVÍO GRATIS* 🚚\n`;
         message += `📅 Fecha: ${orderData.date}\n`;
-        message += `⏰ Hora: ${orderData.time}\n`;
-        message += `📦 Productos: ${orderData.itemCount}\n`;
-        message += `\n━━━━━━━━━━━━━━━━━━━━\n\n`;
+        message += `⏰ Hora: ${orderData.time}\n\n`;
+        
+        message += `*👤 DATOS DEL CLIENTE:*\n`;
+        message += `Nombre: ${orderData.customer.name}\n`;
+        message += `Teléfono: ${orderData.customer.phone}\n`;
+        message += `Dirección: ${orderData.customer.address}\n\n`;
+        
+        message += `*🛒 PRODUCTOS (${orderData.itemCount} unidades):*\n`;
+        message += `━━━━━━━━━━━━━━━━━━━━\n\n`;
 
         orderData.items.forEach((item, index) => {
             message += `*${index + 1}. ${item.title}*\n`;
@@ -751,7 +1106,9 @@ class StoreManager {
 
         message += `━━━━━━━━━━━━━━━━━━━━\n\n`;
         message += `💰 *TOTAL A PAGAR: USD $${orderData.total.toFixed(2)}*\n\n`;
-        message += `Gracias por su compra! 🎉`;
+        message += `🚚 *ENVÍO GRATUITO A DOMICILIO INCLUIDO*\n\n`;
+        message += `¡Gracias por su compra! 🎉\n`;
+        message += `*Phone Store - Tu mejor opción en móviles* 📱`;
 
         return encodeURIComponent(message);
     }
@@ -765,14 +1122,18 @@ class StoreManager {
         this.cart = [];
         this.saveCart();
         this.updateCartUI();
-        this.showNotification('Pedido enviado correctamente');
+        this.showNotification('✅ Pedido enviado correctamente por WhatsApp');
         document.getElementById('cartModal').classList.remove('active');
+        this.showGuideStep();
     }
 }
 
 function toggleCart() {
     const modal = document.getElementById('cartModal');
     modal.classList.toggle('active');
+    if (modal.classList.contains('active')) {
+        store.showGuideStep();
+    }
 }
 
 function closeFullscreen() {
