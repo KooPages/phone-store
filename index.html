@@ -11,43 +11,48 @@
     --secondary: #3498db;
     --accent: #27ae60;
     --danger: #e74c3c;
+    --warning: #f39c12;
     --light: #f8f9fa;
     --dark: #2c3e50;
     --gray: #7f8c8d;
     --border: #ddd;
     --radius: 8px;
 }
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: #f5f5f5;
     color: var(--dark);
-    line-height: 1.5;
+    line-height: 1.6;
 }
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 15px;
 }
-/* Banner */
+
 .delivery-banner {
-    background: #27ae60;
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
     color: white;
     padding: 12px;
     border-radius: var(--radius);
     margin-bottom: 20px;
     text-align: center;
     font-size: 0.95rem;
+    box-shadow: 0 2px 10px rgba(39, 174, 96, 0.2);
 }
-/* Header */
+
 .header {
     background: white;
     border-radius: var(--radius);
-    padding: 15px;
+    padding: 20px;
     margin-bottom: 20px;
     display: flex;
     flex-wrap: wrap;
@@ -55,135 +60,219 @@ body {
     align-items: center;
     gap: 15px;
     border: 1px solid var(--border);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
+
 .logo-section {
     display: flex;
     align-items: center;
     gap: 15px;
     flex-wrap: wrap;
 }
+
 .logo {
     width: 50px;
     height: 50px;
     border-radius: 8px;
     object-fit: cover;
+    border: 2px solid var(--secondary);
 }
+
 .title h1 {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: var(--primary);
+    margin-bottom: 4px;
 }
+
 .title p {
     color: var(--gray);
     font-size: 0.9rem;
 }
+
+.controls-section {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.sort-select {
+    padding: 10px 15px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: white;
+    color: var(--dark);
+    font-size: 0.9rem;
+    cursor: pointer;
+    min-width: 180px;
+}
+
+.sort-select:focus {
+    outline: none;
+    border-color: var(--secondary);
+}
+
 .cart-toggle {
     background: var(--secondary);
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 24px;
     border-radius: var(--radius);
     font-weight: 600;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 8px;
+    transition: background 0.3s;
 }
+
+.cart-toggle:hover {
+    background: #2980b9;
+}
+
 .cart-count {
     background: var(--danger);
     color: white;
     border-radius: 50%;
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 0.85rem;
+    font-weight: bold;
 }
-/* Grid de productos */
+
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
+    gap: 25px;
+    margin-bottom: 40px;
 }
+
 .product-card {
     background: white;
     border-radius: var(--radius);
     border: 1px solid var(--border);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
 .product-image-container {
     width: 100%;
-    height: 180px;
+    height: 200px;
     background: #f8f9fa;
     overflow: hidden;
     position: relative;
 }
+
 .product-image {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    padding: 10px;
+    padding: 15px;
+    transition: transform 0.3s;
 }
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
 .fullscreen-toggle {
     position: absolute;
-    top: 8px;
-    right: 8px;
+    top: 10px;
+    right: 10px;
     background: rgba(0,0,0,0.7);
     color: white;
     border: none;
     border-radius: 4px;
-    padding: 6px;
+    padding: 8px;
     cursor: pointer;
     font-size: 0.9rem;
+    transition: background 0.3s;
 }
+
+.fullscreen-toggle:hover {
+    background: rgba(0,0,0,0.9);
+}
+
 .product-content {
-    padding: 15px;
+    padding: 20px;
 }
+
 .product-id {
     background: var(--primary);
     color: white;
-    padding: 3px 10px;
+    padding: 4px 12px;
     border-radius: 20px;
     font-size: 0.8rem;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     display: inline-block;
+    font-weight: 500;
 }
+
 .product-title {
-    font-size: 1.1rem;
-    margin-bottom: 8px;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
     color: var(--dark);
+    line-height: 1.4;
 }
+
 .product-description {
     color: var(--gray);
-    margin-bottom: 12px;
+    margin-bottom: 15px;
     font-size: 0.9rem;
+    line-height: 1.5;
 }
+
 .product-price {
     color: var(--accent);
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: 700;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
 }
+
 .product-controls {
     display: flex;
-    gap: 8px;
+    gap: 10px;
+    align-items: center;
 }
+
 .quantity-input {
-    width: 70px;
-    padding: 8px;
+    width: 80px;
+    padding: 10px;
     border: 1px solid var(--border);
     border-radius: 4px;
     text-align: center;
+    font-size: 1rem;
 }
+
+.quantity-input:focus {
+    outline: none;
+    border-color: var(--secondary);
+}
+
 .add-to-cart {
     flex: 1;
     background: var(--secondary);
     color: white;
     border: none;
-    padding: 10px;
+    padding: 12px;
     border-radius: 4px;
     cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
 }
-/* Modal del carrito */
+
+.add-to-cart:hover {
+    background: #2980b9;
+}
+
 .cart-modal {
     display: none;
     position: fixed;
@@ -195,113 +284,204 @@ body {
     z-index: 1000;
     align-items: center;
     justify-content: center;
-    padding: 15px;
+    padding: 20px;
+    animation: fadeIn 0.3s;
 }
+
 .cart-modal.active {
     display: flex;
 }
+
 .cart-modal-content {
     background: white;
     border-radius: var(--radius);
     width: 100%;
-    max-width: 500px;
+    max-width: 550px;
     max-height: 90vh;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
+
 .cart-modal-header {
-    padding: 15px;
-    background: var(--primary);
+    padding: 20px;
+    background: linear-gradient(135deg, var(--primary), #34495e);
     color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
 .cart-modal-close {
     background: none;
     border: none;
     color: white;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.3s;
 }
+
+.cart-modal-close:hover {
+    background: rgba(255,255,255,0.1);
+}
+
 .cart-modal-body {
-    padding: 15px;
+    padding: 20px;
     flex: 1;
     overflow-y: auto;
 }
+
 .cart-items {
-    max-height: 250px;
+    max-height: 300px;
     overflow-y: auto;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
 }
+
 .cart-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 0;
+    padding: 15px;
     border-bottom: 1px solid var(--border);
 }
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item-info {
+    flex: 1;
+}
+
+.cart-item-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.cart-item-details {
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
 .cart-item-remove {
     background: var(--danger);
     color: white;
     border: none;
-    width: 26px;
-    height: 26px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
 }
-/* Formulario */
+
+.cart-item-remove:hover {
+    background: #c0392b;
+}
+
 .customer-form {
-    margin: 15px 0;
-    padding: 15px;
+    margin: 20px 0;
+    padding: 20px;
     background: #f8f9fa;
     border-radius: var(--radius);
+    border: 1px solid var(--border);
 }
+
 .form-group {
-    margin-bottom: 12px;
+    margin-bottom: 15px;
 }
+
 .form-group label {
     display: block;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
     font-weight: 600;
     font-size: 0.9rem;
+    color: var(--dark);
 }
+
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid var(--border);
     border-radius: 4px;
     font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.3s;
 }
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.form-error {
+    color: var(--danger);
+    font-size: 0.85rem;
+    margin-top: 5px;
+    display: none;
+}
+
+.form-error.active {
+    display: block;
+}
+
 .cart-total {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: 700;
     color: var(--accent);
     text-align: right;
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid var(--border);
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid var(--border);
 }
+
 .cart-modal-footer {
-    padding: 15px;
+    padding: 20px;
     border-top: 1px solid var(--border);
+    background: #f8f9fa;
 }
+
 .whatsapp-button {
     width: 100%;
-    background: #25D366;
+    background: linear-gradient(135deg, #25D366, #128C7E);
     color: white;
     border: none;
-    padding: 12px;
+    padding: 15px;
     border-radius: var(--radius);
     font-weight: 600;
     cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
+
+.whatsapp-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+}
+
 .whatsapp-button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
 }
-/* Modal de imagen */
+
 .image-modal {
     display: none;
     position: fixed;
@@ -309,119 +489,272 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.9);
+    background: rgba(0,0,0,0.95);
     z-index: 1100;
     align-items: center;
     justify-content: center;
-    padding: 15px;
+    padding: 20px;
+    animation: fadeIn 0.3s;
 }
+
 .image-modal.active {
     display: flex;
 }
+
+.image-modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90vh;
+}
+
 .image-modal-content img {
     max-width: 100%;
     max-height: 90vh;
     object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
+
 .image-modal-close {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: -20px;
+    right: -20px;
     background: rgba(255,255,255,0.1);
     color: white;
     border: none;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     cursor: pointer;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
 }
-/* Notificaciones */
-.guide-notification {
-    position: fixed;
-    bottom: 15px;
-    right: 15px;
-    background: var(--primary);
-    color: white;
-    padding: 12px;
+
+.image-modal-close:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.guide-steps {
+    background: white;
     border-radius: var(--radius);
-    max-width: 300px;
-    z-index: 1200;
-    display: none;
+    padding: 25px;
+    margin-bottom: 30px;
+    border: 1px solid var(--border);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 }
+
+.guide-steps h2 {
+    color: var(--primary);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.step {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.step:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.step-number {
+    background: var(--secondary);
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.step-content h4 {
+    color: var(--dark);
+    margin-bottom: 5px;
+}
+
+.step-content p {
+    color: var(--gray);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
 .security-alert {
     position: fixed;
-    top: 15px;
-    right: 15px;
+    top: 20px;
+    right: 20px;
     background: var(--danger);
     color: white;
-    padding: 12px;
+    padding: 15px 20px;
     border-radius: var(--radius);
     z-index: 1200;
     display: none;
+    animation: slideIn 0.3s;
+    max-width: 300px;
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
 }
+
+.success-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--accent);
+    color: white;
+    padding: 15px 20px;
+    border-radius: var(--radius);
+    z-index: 1200;
+    display: none;
+    animation: slideIn 0.3s;
+    max-width: 300px;
+    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+}
+
 .empty-cart {
     text-align: center;
     color: var(--gray);
-    padding: 30px 15px;
+    padding: 40px 20px;
 }
+
+.empty-cart i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: #ddd;
+}
+
 .loading {
     text-align: center;
-    padding: 30px;
+    padding: 40px;
     color: var(--gray);
+    grid-column: 1 / -1;
 }
-/* Responsive */
+
+.loading::after {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid var(--secondary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-left: 10px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 @media (max-width: 768px) {
     .container {
         padding: 10px;
     }
+    
     .products-grid {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 15px;
     }
+    
     .product-image-container {
-        height: 160px;
+        height: 180px;
     }
+    
     .header {
         flex-direction: column;
         text-align: center;
+        padding: 15px;
     }
+    
     .logo-section {
         justify-content: center;
+        margin-bottom: 15px;
     }
+    
+    .controls-section {
+        width: 100%;
+        justify-content: center;
+    }
+    
     .cart-modal-content {
         max-height: 85vh;
     }
+    
+    .step {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .step-number {
+        align-self: center;
+    }
 }
+
 @media (max-width: 480px) {
     .products-grid {
         grid-template-columns: 1fr;
     }
+    
     .product-controls {
         flex-direction: column;
     }
+    
     .quantity-input {
         width: 100%;
+    }
+    
+    .sort-select {
+        width: 100%;
+    }
+    
+    .cart-toggle {
+        width: 100%;
+        justify-content: center;
     }
 }
 </style>
 </head>
 <body>
 <div class="delivery-banner">
-    <h3>🚚 Envío Gratis a Domicilio</h3>
-    <p>Envío directo sin costos adicionales</p>
+    <h3>🚚 Envío Gratis a Domicilio en La Habana</h3>
+    <p>⏳ Entrega en pocas horas • Garantía oficial • Contactar para dudas: +5355795822</p>
 </div>
 
-<div class="guide-notification" id="guideNotification">
-    <h4 id="guideTitle">Guía</h4>
-    <p id="guideMessage"></p>
-    <button onclick="store.closeGuide()">Cerrar</button>
-</div>
-
+<div class="success-notification" id="successNotification"></div>
 <div class="security-alert" id="securityAlert"></div>
 
 <div class="image-modal" id="imageModal">
     <div class="image-modal-content">
-        <img id="fullscreenImage" src="" alt="Imagen completa">
+        <img id="fullscreenImage" src="" alt="Imagen completa del producto">
         <button class="image-modal-close" onclick="closeFullscreen()">✕</button>
     </div>
 </div>
@@ -429,35 +762,43 @@ body {
 <div class="cart-modal" id="cartModal">
     <div class="cart-modal-content">
         <div class="cart-modal-header">
-            <h2>🛒 Carrito</h2>
+            <h2>🛒 Carrito de Compras</h2>
             <button class="cart-modal-close" onclick="toggleCart()">✕</button>
         </div>
         <div class="cart-modal-body">
             <div class="cart-items" id="cartItems">
-                <div class="empty-cart">Carrito vacío</div>
+                <div class="empty-cart">
+                    <i>🛒</i>
+                    <h3>Tu carrito está vacío</h3>
+                    <p>Añade productos para comenzar tu compra</p>
+                </div>
             </div>
             
-            <div class="customer-form" id="customerForm">
+            <div class="customer-form" id="customerForm" style="display: none;">
                 <h3>📝 Datos de Envío</h3>
                 <div class="form-group">
-                    <label for="customerName">Nombre *</label>
-                    <input type="text" id="customerName" placeholder="Juan Pérez">
+                    <label for="customerName">Nombre Completo *</label>
+                    <input type="text" id="customerName" placeholder="Ej: Juan Pérez Rodríguez" maxlength="50">
+                    <div class="form-error" id="nameError">Nombre requerido (mínimo 3 caracteres)</div>
                 </div>
                 <div class="form-group">
-                    <label for="customerPhone">Teléfono *</label>
-                    <input type="tel" id="customerPhone" placeholder="555-1234-567">
+                    <label for="customerPhone">Teléfono Móvil *</label>
+                    <input type="tel" id="customerPhone" placeholder="Ej: 5551234567" maxlength="8">
+                    <div class="form-error" id="phoneError">Teléfono cubano requerido (8 dígitos, comenzando con 5)</div>
                 </div>
                 <div class="form-group">
-                    <label for="customerAddress">Dirección *</label>
-                    <textarea id="customerAddress" placeholder="Dirección completa"></textarea>
+                    <label for="customerAddress">Dirección Completa *</label>
+                    <textarea id="customerAddress" placeholder="Ej: Calle 123, entre A y B, Vedado, Municipio Plaza" rows="3" maxlength="200"></textarea>
+                    <div class="form-error" id="addressError">Dirección requerida (mínimo 10 caracteres)</div>
                 </div>
             </div>
             
-            <div class="cart-total" id="cartTotal">USD $0.00</div>
+            <div class="cart-total" id="cartTotal">Total: USD $0.00</div>
         </div>
         <div class="cart-modal-footer">
             <button class="whatsapp-button" id="whatsappButton" onclick="store.processOrder()" disabled>
-                Completar datos para proceder
+                <span>📱</span>
+                <span id="buttonText">Completar datos para proceder</span>
             </button>
         </div>
     </div>
@@ -466,17 +807,59 @@ body {
 <div class="container">
     <header class="header">
         <div class="logo-section">
-            <img src="logo.jpg" alt="Logo" class="logo">
+            <img src="logo.jpg" alt="Phone Store Logo" class="logo">
             <div class="title">
-                <h1>Phone Store</h1>
-                <p>Variedad de ofertas móviles</p>
+                <h1>📱 Phone-Store</h1>
+                <p>Tu tienda confiable de teléfonos</p>
             </div>
         </div>
-        <button class="cart-toggle" onclick="toggleCart()">
-            🛒 Carrito
-            <span class="cart-count" id="cartCount">0</span>
-        </button>
+        <div class="controls-section">
+            <select class="sort-select" id="sortSelect" onchange="store.sortProducts(this.value)">
+                <option value="default">Ordenar por: Predeterminado</option>
+                <option value="name-asc">Nombre (A-Z)</option>
+                <option value="name-desc">Nombre (Z-A)</option>
+                <option value="price-asc">Precio (Menor a Mayor)</option>
+                <option value="price-desc">Precio (Mayor a Menor)</option>
+            </select>
+            <button class="cart-toggle" onclick="toggleCart()">
+                🛒 Carrito
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
+        </div>
     </header>
+    
+    <section class="guide-steps">
+        <h2>📋 Guía para Comprar Exitosa</h2>
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h4>Explora Nuestros Productos</h4>
+                <p>Navega por nuestro catálogo de teléfonos. Usa el menú desplegable para ordenar por nombre o precio. Haz clic en la lupa 🔍 para ver imágenes en grande.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h4>Añade al Carrito</h4>
+                <p>Selecciona la cantidad deseada y haz clic en "Añadir al Carrito". Puedes ver tu selección en el contador rojo del botón del carrito.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h4>Completa Tus Datos</h4>
+                <p>Abre el carrito 🛒 y completa todos los campos del formulario. Asegúrate de usar un número de teléfono cubano válido (8 dígitos comenzando con 5).</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h4>Confirma por WhatsApp</h4>
+                <p>Haz clic en "Comprar por WhatsApp" para enviar tu pedido directamente a nuestro equipo. Recibirás confirmación inmediata.</p>
+            </div>
+        </div>
+    </section>
+    
     <main class="main-content">
         <section class="products-grid" id="productsGrid">
             <div class="loading">Cargando productos...</div>
@@ -488,17 +871,22 @@ body {
 class StoreManager {
     constructor() {
         this.products = [];
+        this.filteredProducts = [];
         this.cart = this.loadCart();
         this.customerData = this.loadCustomerData();
+        this.currentSort = 'default';
         this.init();
     }
 
     async init() {
         this.setupSecurity();
         await this.loadProducts();
+        this.sortProducts('default');
         this.renderProducts();
         this.updateCartUI();
         this.bindEvents();
+        this.setupFormValidation();
+        this.showWelcomeNotification();
     }
 
     loadCart() {
@@ -529,28 +917,54 @@ class StoreManager {
 
     async loadProducts() {
         this.products = [
-            { id: 1, title: "Samsung Galaxy A26 8/256GB Black", description: "Producto sellado con accesorios", price: 245, image: "1.jpg" },
-            { id: 2, title: "Samsung Galaxy A17 4/128GB Black", description: "Producto sellado con accesorios", price: 200, image: "2.jpg" },
-            { id: 3, title: "Samsung A16 5M/DS 4/128GB LTE", description: "Producto sellado con accesorios", price: 165, image: "3.jpg" },
-            { id: 4, title: "Itel City 100 4/256GB", description: "Producto sellado con accesorios", price: 125, image: "4.jpg" },
-            { id: 5, title: "Redmi Note 14 6/128GB Black", description: "Producto sellado con accesorios", price: 200, image: "5.jpg" },
-            { id: 6, title: "Samsung A26 6/128GB 5G Black", description: "Producto sellado con accesorios", price: 230, image: "6.jpg" },
-            { id: 7, title: "Itel A50C 2/64GB Blue", description: "Producto sellado con accesorios", price: 105, image: "7.jpg" },
-            { id: 8, title: "Samsung Galaxy A17 6/128GB Black", description: "Producto sellado con accesorios", price: 210, image: "8.jpg" },
-            { id: 9, title: "Samsung Galaxy A17 8/256GB Black", description: "Producto sellado con accesorios", price: 245, image: "9.jpg" },
-            { id: 10, title: "Samsung Galaxy A36 8/256GB", description: "Producto sellado con accesorios", price: 305, image: "10.jpg" },
-            { id: 11, title: "Samsung Galaxy A56 8/128GB Awesome Lihtgray", description: "Producto sellado con accesorios", price: 340, image: "11.jpg" },
-            { id: 12, title: "Xiaomi Redmi Note 15 8/256GB", description: "Producto sellado con accesorios", price: 250, image: "12.jpg" },
+            { id: 1, title: "Samsung Galaxy A26 8/256GB Black", description: "Producto sellado con accesorios originales", price: 245, image: "1.jpg" },
+            { id: 2, title: "Samsung Galaxy A17 4/128GB Black", description: "Producto sellado con accesorios originales", price: 200, image: "2.jpg" },
+            { id: 3, title: "Samsung A16 5M/DS 4/128GB LTE", description: "Producto sellado con accesorios originales", price: 165, image: "3.jpg" },
+            { id: 4, title: "Itel City 100 4/256GB", description: "Producto sellado con accesorios originales", price: 125, image: "4.jpg" },
+            { id: 5, title: "Redmi Note 14 6/128GB Black", description: "Producto sellado con accesorios originales", price: 200, image: "5.jpg" },
+            { id: 6, title: "Samsung A26 6/128GB 5G Black", description: "Producto sellado con accesorios originales", price: 230, image: "6.jpg" },
+            { id: 7, title: "Itel A50C 2/64GB Blue", description: "Producto sellado con accesorios originales", price: 105, image: "7.jpg" },
+            { id: 8, title: "Samsung Galaxy A17 6/128GB Black", description: "Producto sellado con accesorios originales", price: 210, image: "8.jpg" },
+            { id: 9, title: "Samsung Galaxy A17 8/256GB Black", description: "Producto sellado con accesorios originales", price: 245, image: "9.jpg" },
+            { id: 10, title: "Samsung Galaxy A36 8/256GB", description: "Producto sellado con accesorios originales", price: 305, image: "10.jpg" },
+            { id: 11, title: "Samsung Galaxy A56 8/128GB Awesome Lightgray", description: "Producto sellado con accesorios originales", price: 340, image: "11.jpg" },
+            { id: 12, title: "Xiaomi Redmi Note 15 8/256GB", description: "Producto sellado con accesorios originales", price: 250, image: "12.jpg" },
         ];
+        this.filteredProducts = [...this.products];
+    }
+
+    sortProducts(criteria) {
+        this.currentSort = criteria;
+        const select = document.getElementById('sortSelect');
+        if (select) select.value = criteria;
+        
+        switch(criteria) {
+            case 'name-asc':
+                this.filteredProducts.sort((a, b) => a.title.localeCompare(b.title));
+                break;
+            case 'name-desc':
+                this.filteredProducts.sort((a, b) => b.title.localeCompare(a.title));
+                break;
+            case 'price-asc':
+                this.filteredProducts.sort((a, b) => a.price - b.price);
+                break;
+            case 'price-desc':
+                this.filteredProducts.sort((a, b) => b.price - a.price);
+                break;
+            default:
+                this.filteredProducts = [...this.products];
+        }
+        
+        this.renderProducts();
     }
 
     renderProducts() {
         const grid = document.getElementById('productsGrid');
-        grid.innerHTML = this.products.map(product => `
+        grid.innerHTML = this.filteredProducts.map(product => `
             <div class="product-card" data-id="${product.id}">
                 <div class="product-image-container">
-                    <img src="${product.image}" alt="${product.title}" class="product-image">
-                    <button class="fullscreen-toggle" onclick="store.openFullscreen('${product.image}')">
+                    <img src="${product.image}" alt="${product.title}" class="product-image" loading="lazy">
+                    <button class="fullscreen-toggle" onclick="store.openFullscreen('${product.image}', '${product.title}')" aria-label="Ver imagen completa">
                         🔍
                     </button>
                 </div>
@@ -558,10 +972,12 @@ class StoreManager {
                     <span class="product-id">ID: ${String(product.id).padStart(3, '0')}</span>
                     <h3 class="product-title">${product.title}</h3>
                     <p class="product-description">${product.description}</p>
-                    <div class="product-price">USD $${product.price}</div>
+                    <div class="product-price">USD $${product.price.toFixed(2)}</div>
                     <div class="product-controls">
-                        <input type="number" class="quantity-input" min="1" max="99" value="1">
-                        <button class="add-to-cart" onclick="store.addToCart(${product.id})">Añadir al Carrito</button>
+                        <input type="number" class="quantity-input" min="1" max="99" value="1" aria-label="Cantidad de ${product.title}">
+                        <button class="add-to-cart" onclick="store.addToCart(${product.id})" aria-label="Añadir ${product.title} al carrito">
+                            Añadir al Carrito
+                        </button>
                     </div>
                 </div>
             </div>
@@ -591,13 +1007,19 @@ class StoreManager {
         quantityInput.value = 1;
         this.saveCart();
         this.updateCartUI();
-        this.showNotification('✅ Producto añadido');
+        this.showSuccessNotification('✅ Producto añadido al carrito');
+        
+        if (!document.getElementById('cartModal').classList.contains('active')) {
+            setTimeout(() => toggleCart(), 500);
+        }
     }
 
     removeFromCart(index) {
+        const item = this.cart[index];
         this.cart.splice(index, 1);
         this.saveCart();
         this.updateCartUI();
+        this.showSuccessNotification(`❌ ${item.title} eliminado del carrito`);
     }
 
     updateCartUI() {
@@ -606,15 +1028,22 @@ class StoreManager {
         const cartTotal = document.getElementById('cartTotal');
         const customerForm = document.getElementById('customerForm');
         const whatsappButton = document.getElementById('whatsappButton');
+        const buttonText = document.getElementById('buttonText');
 
         cartCount.textContent = this.cart.reduce((sum, item) => sum + item.quantity, 0);
 
         if (this.cart.length === 0) {
-            cartItems.innerHTML = '<div class="empty-cart">Carrito vacío</div>';
-            cartTotal.textContent = 'USD $0.00';
+            cartItems.innerHTML = `
+                <div class="empty-cart">
+                    <i>🛒</i>
+                    <h3>Tu carrito está vacío</h3>
+                    <p>Añade productos para comenzar tu compra</p>
+                </div>
+            `;
+            cartTotal.textContent = 'Total: USD $0.00';
             customerForm.style.display = 'none';
             whatsappButton.disabled = true;
-            whatsappButton.textContent = 'Completar datos para proceder';
+            buttonText.textContent = 'Completar datos para proceder';
             return;
         }
 
@@ -623,16 +1052,18 @@ class StoreManager {
                 <div class="cart-item-info">
                     <div class="cart-item-title">${item.title}</div>
                     <div class="cart-item-details">
-                        ${item.quantity} × USD $${item.price.toFixed(2)}
+                        ${item.quantity} × USD $${item.price.toFixed(2)} = USD $${(item.price * item.quantity).toFixed(2)}
                     </div>
                 </div>
-                <button class="cart-item-remove" onclick="store.removeFromCart(${index})">✕</button>
+                <button class="cart-item-remove" onclick="store.removeFromCart(${index})" aria-label="Eliminar ${item.title} del carrito">
+                    ✕
+                </button>
             </div>
         `).join('');
 
         customerForm.style.display = 'block';
         const total = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        cartTotal.textContent = `USD $${total.toFixed(2)}`;
+        cartTotal.textContent = `Total: USD $${total.toFixed(2)}`;
 
         this.updateCustomerForm();
         this.validateForm();
@@ -642,31 +1073,89 @@ class StoreManager {
         document.getElementById('customerName').value = this.customerData.name;
         document.getElementById('customerPhone').value = this.customerData.phone;
         document.getElementById('customerAddress').value = this.customerData.address;
-        
-        const inputs = document.querySelectorAll('#customerForm input, #customerForm textarea');
-        inputs.forEach(input => {
-            input.addEventListener('input', () => {
-                this.customerData[input.id.replace('customer', '').toLowerCase()] = input.value;
-                this.saveCustomerData();
-                this.validateForm();
-            });
+    }
+
+    setupFormValidation() {
+        const nameInput = document.getElementById('customerName');
+        const phoneInput = document.getElementById('customerPhone');
+        const addressInput = document.getElementById('customerAddress');
+
+        const validateField = (field, value) => {
+            const nameError = document.getElementById('nameError');
+            const phoneError = document.getElementById('phoneError');
+            const addressError = document.getElementById('addressError');
+
+            switch(field) {
+                case 'customerName':
+                    this.customerData.name = value;
+                    if (value.trim().length < 3) {
+                        nameError.classList.add('active');
+                        return false;
+                    } else {
+                        nameError.classList.remove('active');
+                        return true;
+                    }
+                
+                case 'customerPhone':
+                    this.customerData.phone = value;
+                    const phoneRegex = /^5[0-9]{7}$/;
+                    if (!phoneRegex.test(value)) {
+                        phoneError.classList.add('active');
+                        return false;
+                    } else {
+                        phoneError.classList.remove('active');
+                        return true;
+                    }
+                
+                case 'customerAddress':
+                    this.customerData.address = value;
+                    if (value.trim().length < 10) {
+                        addressError.classList.add('active');
+                        return false;
+                    } else {
+                        addressError.classList.remove('active');
+                        return true;
+                    }
+            }
+            
+            this.saveCustomerData();
+            return false;
+        };
+
+        nameInput.addEventListener('input', (e) => {
+            validateField('customerName', e.target.value);
+            this.validateForm();
+        });
+
+        phoneInput.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 8) value = value.substring(0, 8);
+            e.target.value = value;
+            validateField('customerPhone', value);
+            this.validateForm();
+        });
+
+        addressInput.addEventListener('input', (e) => {
+            validateField('customerAddress', e.target.value);
+            this.validateForm();
         });
     }
 
     validateForm() {
-        const name = document.getElementById('customerName').value.trim();
-        const phone = document.getElementById('customerPhone').value.trim();
-        const address = document.getElementById('customerAddress').value.trim();
+        const nameValid = this.customerData.name.trim().length >= 3;
+        const phoneValid = /^5[0-9]{7}$/.test(this.customerData.phone);
+        const addressValid = this.customerData.address.trim().length >= 10;
         const whatsappButton = document.getElementById('whatsappButton');
+        const buttonText = document.getElementById('buttonText');
 
-        const isValid = name.length > 3 && phone.length >= 8 && address.length > 10;
+        const isValid = nameValid && phoneValid && addressValid && this.cart.length > 0;
         
         if (isValid) {
             whatsappButton.disabled = false;
-            whatsappButton.textContent = 'Comprar por WhatsApp';
+            buttonText.textContent = `Comprar por WhatsApp (${this.cart.reduce((sum, item) => sum + item.quantity, 0)} productos)`;
         } else {
             whatsappButton.disabled = true;
-            whatsappButton.textContent = 'Completar datos para proceder';
+            buttonText.textContent = 'Completar datos para proceder';
         }
         
         return isValid;
@@ -676,21 +1165,47 @@ class StoreManager {
         document.addEventListener('contextmenu', (e) => {
             if (e.target.tagName === 'IMG') {
                 e.preventDefault();
-                this.showNotification('Acción bloqueada');
+                this.showSecurityAlert('⛔ Acción bloqueada para proteger las imágenes');
+            }
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey && (e.key === 's' || e.key === 'S')) || e.key === 'F12') {
+                e.preventDefault();
+                this.showSecurityAlert('⛔ Acceso restringido');
             }
         });
     }
 
-    showNotification(message) {
+    showSecurityAlert(message) {
         const alert = document.getElementById('securityAlert');
         alert.textContent = message;
         alert.style.display = 'block';
-        setTimeout(() => alert.style.display = 'none', 1500);
+        setTimeout(() => {
+            alert.style.display = 'none';
+        }, 3000);
+    }
+
+    showSuccessNotification(message) {
+        const notification = document.getElementById('successNotification');
+        notification.textContent = message;
+        notification.style.display = 'block';
+        setTimeout(() => {
+            notification.style.display = 'none';
+        }, 3000);
+    }
+
+    showWelcomeNotification() {
+        setTimeout(() => {
+            this.showSuccessNotification('👋 ¡Bienvenido a Phone-Store! Sigue los pasos de la guía para una compra exitosa.');
+        }, 1000);
     }
 
     bindEvents() {
         document.addEventListener('click', (e) => {
-            if (!e.target.closest('.cart-modal-content') && !e.target.closest('.cart-toggle')) {
+            if (!e.target.closest('.cart-modal-content') && 
+                !e.target.closest('.cart-toggle') && 
+                !e.target.closest('.cart-item-remove')) {
                 document.getElementById('cartModal').classList.remove('active');
             }
         });
@@ -701,10 +1216,22 @@ class StoreManager {
                 document.getElementById('imageModal').classList.remove('active');
             }
         });
+
+        window.addEventListener('beforeunload', () => {
+            if (this.cart.length > 0 || 
+                this.customerData.name || 
+                this.customerData.phone || 
+                this.customerData.address) {
+                this.saveCart();
+                this.saveCustomerData();
+            }
+        });
     }
 
-    openFullscreen(imageUrl) {
-        document.getElementById('fullscreenImage').src = imageUrl;
+    openFullscreen(imageUrl, title) {
+        const img = document.getElementById('fullscreenImage');
+        img.src = imageUrl;
+        img.alt = `Imagen completa: ${title}`;
         document.getElementById('imageModal').classList.add('active');
     }
 
@@ -713,21 +1240,38 @@ class StoreManager {
     }
 
     processOrder() {
-        if (this.cart.length === 0 || !this.validateForm()) return;
+        if (this.cart.length === 0 || !this.validateForm()) {
+            this.showSecurityAlert('❌ Completa todos los datos requeridos');
+            return;
+        }
 
         const phoneNumber = '+5355795822';
         const orderData = this.formatOrderData();
         const message = this.generateWhatsAppMessage(orderData);
         
-        window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
-        this.clearCart();
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+        
+        setTimeout(() => {
+            this.clearCart();
+        }, 1000);
     }
 
     formatOrderData() {
         const total = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const itemCount = this.cart.reduce((sum, item) => sum + item.quantity, 0);
+        
         return {
-            date: new Date().toLocaleDateString('es-ES'),
-            time: new Date().toLocaleTimeString('es-ES'),
+            date: new Date().toLocaleDateString('es-ES', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            }),
+            time: new Date().toLocaleTimeString('es-ES', {
+                hour: '2-digit',
+                minute: '2-digit'
+            }),
             customer: this.customerData,
             items: this.cart.map(item => ({
                 id: item.id,
@@ -737,29 +1281,39 @@ class StoreManager {
                 subtotal: item.price * item.quantity
             })),
             total: total,
-            itemCount: this.cart.reduce((sum, item) => sum + item.quantity, 0)
+            itemCount: itemCount
         };
     }
 
     generateWhatsAppMessage(orderData) {
-        let message = `*📱 PEDIDO PHONE STORE*\n`;
-        message += `📅 Fecha: ${orderData.date}\n`;
-        message += `⏰ Hora: ${orderData.time}\n\n`;
+        let message = `*📱 PEDIDO PHONE STORE CUBA*\n`;
+        message += `══════════════════════════════\n\n`;
         
-        message += `*👤 DATOS:*\n`;
-        message += `Nombre: ${orderData.customer.name}\n`;
-        message += `Teléfono: ${orderData.customer.phone}\n`;
-        message += `Dirección: ${orderData.customer.address}\n\n`;
+        message += `*📅 FECHA Y HORA*\n`;
+        message += `📅 ${orderData.date}\n`;
+        message += `⏰ ${orderData.time}\n\n`;
         
-        message += `*🛒 PRODUCTOS (${orderData.itemCount}):*\n`;
+        message += `*👤 DATOS DEL CLIENTE*\n`;
+        message += `👤 Nombre: ${orderData.customer.name}\n`;
+        message += `📞 Teléfono: ${orderData.customer.phone}\n`;
+        message += `📍 Dirección: ${orderData.customer.address}\n\n`;
+        
+        message += `*🛒 PRODUCTOS (${orderData.itemCount} unidades)*\n`;
+        message += `══════════════════════════════\n`;
+        
         orderData.items.forEach((item, index) => {
-            message += `${index + 1}. ${item.title}\n`;
-            message += `   Cantidad: ${item.quantity}\n`;
-            message += `   Subtotal: USD $${item.subtotal.toFixed(2)}\n\n`;
+            message += `\n*${index + 1}. ${item.title}*\n`;
+            message += `   • Cantidad: ${item.quantity}\n`;
+            message += `   • Precio unitario: USD $${item.price.toFixed(2)}\n`;
+            message += `   • Subtotal: USD $${item.subtotal.toFixed(2)}\n`;
         });
-
-        message += `💰 *TOTAL: USD $${orderData.total.toFixed(2)}*\n`;
+        
+        message += `\n══════════════════════════════\n`;
+        message += `💰 *TOTAL DEL PEDIDO: USD $${orderData.total.toFixed(2)}*\n`;
         message += `🚚 *ENVÍO GRATIS INCLUIDO*\n`;
+        message += `⏱️ *ENTREGA: 24-48 HORAS*\n\n`;
+        message += `*¡Gracias por tu compra!*\n`;
+        
         return message;
     }
 
@@ -767,13 +1321,23 @@ class StoreManager {
         this.cart = [];
         this.saveCart();
         this.updateCartUI();
-        this.showNotification('✅ Pedido enviado');
+        this.showSuccessNotification('✅ Pedido enviado por WhatsApp');
         document.getElementById('cartModal').classList.remove('active');
+        
+        this.customerData = { name: '', phone: '', address: '' };
+        this.saveCustomerData();
+        this.updateCustomerForm();
+        this.validateForm();
     }
 }
 
 function toggleCart() {
-    document.getElementById('cartModal').classList.toggle('active');
+    const modal = document.getElementById('cartModal');
+    modal.classList.toggle('active');
+    
+    if (modal.classList.contains('active')) {
+        store.validateForm();
+    }
 }
 
 function closeFullscreen() {
