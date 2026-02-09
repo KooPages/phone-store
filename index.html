@@ -833,7 +833,7 @@ body {
         <div class="step">
             <div class="step-number">1</div>
             <div class="step-content">
-                <h4>Explora Nuestros Productos</h4>
+                <h4>Explora</h4>
                 <p>Navega por nuestro catálogo de teléfonos. Usa el menú desplegable para ordenar por nombre o precio. Haz clic en la lupa 🔍 para ver imágenes en grande.</p>
             </div>
         </div>
@@ -848,14 +848,14 @@ body {
             <div class="step-number">3</div>
             <div class="step-content">
                 <h4>Completa Tus Datos</h4>
-                <p>Abre el carrito 🛒 y completa todos los campos del formulario. Asegúrate de usar un número de teléfono cubano válido (8 dígitos comenzando con 5).</p>
+                <p>Abre el carrito 🛒 y completa todos los campos del formulario.</p>
             </div>
         </div>
         <div class="step">
             <div class="step-number">4</div>
             <div class="step-content">
                 <h4>Confirma por WhatsApp</h4>
-                <p>Haz clic en "Comprar por WhatsApp" para enviar tu pedido directamente a nuestro equipo. Recibirás confirmación inmediata.</p>
+                <p>Haz clic en Comprar para enviar tu pedido directamente.</p>
             </div>
         </div>
     </section>
@@ -1152,7 +1152,7 @@ class StoreManager {
         
         if (isValid) {
             whatsappButton.disabled = false;
-            buttonText.textContent = `Comprar por WhatsApp (${this.cart.reduce((sum, item) => sum + item.quantity, 0)} productos)`;
+            buttonText.textContent = `Comprar (${this.cart.reduce((sum, item) => sum + item.quantity, 0)} productos)`;
         } else {
             whatsappButton.disabled = true;
             buttonText.textContent = 'Completar datos para proceder';
@@ -1286,32 +1286,30 @@ class StoreManager {
     }
 
     generateWhatsAppMessage(orderData) {
-        let message = `*📱 PEDIDO PHONE STORE CUBA*\n`;
-        message += `══════════════════════════════\n\n`;
+        let message = `*PEDIDO DE PHONE-STORE*\n`;
+        message += `═════════════\n`;
         
-        message += `*📅 FECHA Y HORA*\n`;
-        message += `📅 ${orderData.date}\n`;
-        message += `⏰ ${orderData.time}\n\n`;
+        message += `*FECHA Y HORA*\n`;
+        message += `${orderData.date}\n`;
+        message += `${orderData.time}\n\n`;
         
-        message += `*👤 DATOS DEL CLIENTE*\n`;
-        message += `👤 Nombre: ${orderData.customer.name}\n`;
-        message += `📞 Teléfono: ${orderData.customer.phone}\n`;
-        message += `📍 Dirección: ${orderData.customer.address}\n\n`;
+        message += `*DATOS DEL CLIENTE*\n`;
+        message += `Nombre: ${orderData.customer.name}\n`;
+        message += `Teléfono: ${orderData.customer.phone}\n`;
+        message += `Dirección: ${orderData.customer.address}\n\n`;
         
-        message += `*🛒 PRODUCTOS (${orderData.itemCount} unidades)*\n`;
-        message += `══════════════════════════════\n`;
+        message += `*PRODUCTOS DESEADOS (${orderData.itemCount} unidades)*\n`;
+        message += `═════════════\n`;
         
         orderData.items.forEach((item, index) => {
             message += `\n*${index + 1}. ${item.title}*\n`;
             message += `   • Cantidad: ${item.quantity}\n`;
             message += `   • Precio unitario: USD $${item.price.toFixed(2)}\n`;
-            message += `   • Subtotal: USD $${item.subtotal.toFixed(2)}\n`;
         });
         
-        message += `\n══════════════════════════════\n`;
-        message += `💰 *TOTAL DEL PEDIDO: USD $${orderData.total.toFixed(2)}*\n`;
-        message += `🚚 *ENVÍO GRATIS INCLUIDO*\n`;
-        message += `⏱️ *ENTREGA: 24-48 HORAS*\n\n`;
+        message += `═════════════\n`;
+        message += `*TOTAL DEL PEDIDO: USD $${orderData.total.toFixed(2)}*\n`;
+        message += `*ENVÍO GRATIS INCLUIDO*\n`;
         message += `*¡Gracias por tu compra!*\n`;
         
         return message;
